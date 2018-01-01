@@ -1,13 +1,13 @@
-#include <solight.h>
+#include <dy01.h>
 
-Solight solight(8);
+DY01 transmitter(8);
 
 void setup() {
 }
 
 void loop() {
-	solight.control(31, 'A', 1);
+	transmitter.control(31, 'A', 1);
 	delay(1000);
-	solight.control(31, 'A', 0);
+	transmitter.control(31, 'A', 0);
 	delay(1000);
 }

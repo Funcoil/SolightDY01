@@ -1,20 +1,20 @@
-#include "solight.h"
+#include "dy01.h"
 
-Solight::Solight(int pin, int transmitCount) :
+DY01::DY01(int pin, int transmitCount) :
 	mPin(pin),
 	mTransmitCount(transmitCount)
 {
 	pinMode(mPin, OUTPUT);
 }
 
-void Solight::transmitBit(uint8_t b) {
+void DY01::transmitBit(uint8_t b) {
 	digitalWrite(mPin, HIGH);
 	delayMicroseconds(150 + 300*b);
 	digitalWrite(mPin, LOW);
 	delayMicroseconds(450 - 300*b);
 }
 
-void Solight::control(uint16_t socketNumber, char state) {
+void DY01::control(uint16_t socketNumber, char state) {
 	uint16_t tmp; 
 	int i, j;
 	for(j = 0; j < mTransmitCount; ++j) {
@@ -42,7 +42,7 @@ void Solight::control(uint16_t socketNumber, char state) {
 	}
 }
 
-void Solight::control(uint16_t channelNumber, char socketLetter, char state) {
+void DY01::control(uint16_t channelNumber, char socketLetter, char state) {
 	channelNumber *= 32;
 	switch(socketLetter) {
 		case 'A':
